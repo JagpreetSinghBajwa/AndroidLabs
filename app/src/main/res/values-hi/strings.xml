@@ -3,4 +3,12 @@
     <string name="app_name">AndroidLabs</string>
     <string name="hello_message">हैलो वर्ल्ड!</string>
     <string name="ButtonText">I\’m a button</string>
-    </resources>
+    <string name="my_gui">Look at my GUI</string>
+    <string name="my_button">Click Here</string>
+    <string name="checkBox1">Check this out!</string>
+    <string name="flag">Inddian Flag</string>
+    <string name="switch1">Switch on / off</string>
+    <string name="edit_message">Type here</string>
+
+
+</resources>
