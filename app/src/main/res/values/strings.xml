@@ -1,12 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AndroidLabs</string>
+    <string name="app_name">Android Labs</string>
     <string name="hello_message">Hello World!</string>
-    <string name="ButtonText">I\’m a button</string>
-    <string name="my_gui">Look at my GUI</string>
-    <string name="my_button">Click Here</string>
-    <string name="checkBox1">Check this out!</string>
-    <string name="flag">Canadian Flag</string>
-    <string name="switch1">Switch on / off </string>
-    <string name="edit_message">Type here</string>
-
+    <string name="ButtonText">I\'m a Button</string>
+    <string name="textViewMsg">Look at my GUI</string>
+    <string name="flagButtonText">CLICK HERE</string>
+    <string name="checkBoxText">Check this out!</string>
+    <string name="switchText">Switch on/off </string>
+    <string name="hint_message">Type here</string>
+    <string name="emailTextView">Enter your email address:</string>
+    <string name="emailTextEdit">Type email here</string>
+    <string name="passwordTextView">Type your password:</string>
+    <string name="loginButton">Login</string>
+    <string name="yourProfile">Your profile</string>
+    <string name="yourName">Your name:</string>
+    <string name="enterYourName">Enter your name</string>
+    <string name="yourEmail">Your email:</string>
+    <string name="enterYourEmail">Enter your email</string>
+    <string name="yourPicture">Your picture:</string>
+    <string name="clickButtonAbove">Click the button above to take a picture</string>
 </resources>

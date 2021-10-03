@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jagpr/AndroidStudioProjects/AndroidLabs/app/src/main/res/layout/activity_biodata.xml" value="0.3671875" />
         <entry key="..\:/Users/jagpr/AndroidStudioProjects/AndroidLabs/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/jagpr/AndroidStudioProjects/AndroidLabs/app/src/main/res/layout/activity_main_grid.xml" value="0.254981884057971" />
         <entry key="..\:/Users/jagpr/AndroidStudioProjects/AndroidLabs/app/src/main/res/layout/activity_main_linear.xml" value="0.1" />
         <entry key="..\:/Users/jagpr/AndroidStudioProjects/AndroidLabs/app/src/main/res/layout/activity_main_relative.xml" value="0.254981884057971" />
+        <entry key="..\:/Users/jagpr/AndroidStudioProjects/AndroidLabs/app/src/main/res/layout/activity_profile.xml" value="0.3671875" />
       </map>
     </option>
   </component>

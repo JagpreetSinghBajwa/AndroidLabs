@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">AndroidLabs</string>
-    <string name="hello_message">हैलो वर्ल्ड!</string>
-    <string name="ButtonText">I\’m a button</string>
-    <string name="my_gui">Look at my GUI</string>
-    <string name="my_button">Click Here</string>
-    <string name="checkBox1">Check this out!</string>
-    <string name="flag">Inddian Flag</string>
-    <string name="switch1">Switch on / off</string>
-    <string name="edit_message">Type here</string>
+    <resources>
+        <string name="app_name">Android Labs</string>
+        <string name="hello_message">हैलो वर्ल्ड!</string>
+        <string name="ButtonText">मैं एक बटन हूँ</string>
+        <string name="textViewMsg">मेरे जीयूआई को देखो</string>
+        <string name="flagButtonText">यहां क्लिक करें</string>
+        <string name="checkBoxText">इसकी जांच-पड़ताल करें!</string>
+        <string name="switchText">स्विच ऑन स्विच ऑफ करें</string>
+        <string name="hint_message">यहाँ लिखें</string>
+        <string name="emailTextView">अपना ईमेल पता दर्ज करें:</string>
+        <string name="emailTextEdit">ईमेल यहाँ टाइप करें</string>
+        <string name="passwordTextView">अपना पासवर्ड टाइप करें:</string>
+        <string name="loginButton">पहचानकर्ता</string>
+        <string name="yourProfile">आपकी रूपरेखा</string>
+        <string name="yourName">तुम्हारा नाम:</string>
+        <string name="enterYourName">अपना नाम दर्ज करें</string>
+        <string name="yourEmail">तुम्हारा ईमेल:</string>
+        <string name="enterYourEmail">अपना ईमेल दर्ज करें</string>
+        <string name="yourPicture">आपकी तस्वीर:</string>
+        <string name="clickButtonAbove">फोटो लेने के लिए ऊपर दिए गए बटन पर क्लिक करें</string>
+    </resources>
 
 
-</resources>
