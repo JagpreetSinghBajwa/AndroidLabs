@@ -1,63 +1,71 @@
 package com.example.androidlabs;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
+    private static final String SHARED_PREFS = "lab3";
+    private static final String EMAIL_PREF_KEY = "email";
 
-    private EditText editTextEmail;
-    private EditText editTextPass;
-    private Button buttonLogin;
-
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String EMAIL = "email";
-
-    private String email;
+    private EditText emailText;
+    private Button login;
+    private SharedPreferences prefs;
+    private String savedEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_biodata);
+        setContentView(R.layout.activity_main);
 
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPass = (EditText) findViewById(R.id.editTextPass);
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        // Check the shared preferences for a saved email and display it in the email box, otherwise display an empty string.
+        SharedPreferences pref = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String savedEmail = pref.getString(EMAIL_PREF_KEY, "");
+        ((EditText) findViewById(R.id.email)).setText(savedEmail);
 
-        // load user's email address from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        email = sharedPreferences.getString(EMAIL, "");
-
-        // Set email address of Email Edit Text
-        editTextEmail.setText(email);
-
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent profilePage = new Intent(MainActivity.this, ProfileActivity.class);
-                profilePage.putExtra("email", editTextEmail.getText().toString());
-                startActivity(profilePage);
-            }
+        // When the login button is clicked, transition to the Profile activity.
+        ((Button) findViewById(R.id.login)).setOnClickListener(clk -> {
+            // Saving the email to the shared preferences while clicking the button wasn't required, but it's helpful.
+            saveEmailToPreferences();
+            startActivity(new Intent(this, ProfileActivity.class));
         });
+    }
 
+    private void saveEmailToPreferences() {
+        SharedPreferences pref = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String enteredEmail = ((EditText) findViewById(R.id.email)).getText().toString();
+        pref.edit().putString(EMAIL_PREF_KEY, enteredEmail).commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        // save a user's email address
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EMAIL, editTextEmail.getText().toString());
+        // Ensure the contents of the email box are saved in the shared preferences
+        saveEmailToPreferences();
+    }
 
-        editor.apply();
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

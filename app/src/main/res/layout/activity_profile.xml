@@ -4,60 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity"
-    android:orientation="vertical">
-
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/yourProfile"
-        android:textSize="30sp"/>
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/yourName" />
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/profile_title" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_name" />
 
     <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="match_parent"
+        android:id="@+id/name_edit"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/enterYourName" />
+        android:hint="@string/profile_name_hint" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/yourEmail" />
+        android:text="@string/profile_email" />
 
     <EditText
-        android:id="@+id/editTextEmailR"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/enterYourEmail"/>
+        android:hint="@string/profile_email_hint" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/yourPicture" />
+        android:text="@string/profile_picture" />
 
     <ImageButton
-        android:id="@+id/buttonSnap"
-        android:layout_width="match_parent"
+        android:id="@+id/profile_picture"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        android:src="@android:drawable/picture_frame" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_picture_hint" />
+    <Button
+        android:id="@+id/goToChat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/clickButtonAbove" />
+        android:text="@string/goToChat" />
+
 </LinearLayout>

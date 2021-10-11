@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
     <resources>
         <string name="app_name">Android Labs</string>
-        <string name="hello_message">हैलो वर्ल्ड!</string>
-        <string name="ButtonText">मैं एक बटन हूँ</string>
-        <string name="textViewMsg">मेरे जीयूआई को देखो</string>
-        <string name="flagButtonText">यहां क्लिक करें</string>
-        <string name="checkBoxText">इसकी जांच-पड़ताल करें!</string>
-        <string name="switchText">स्विच ऑन स्विच ऑफ करें</string>
-        <string name="hint_message">यहाँ लिखें</string>
-        <string name="emailTextView">अपना ईमेल पता दर्ज करें:</string>
-        <string name="emailTextEdit">ईमेल यहाँ टाइप करें</string>
-        <string name="passwordTextView">अपना पासवर्ड टाइप करें:</string>
-        <string name="loginButton">पहचानकर्ता</string>
-        <string name="yourProfile">आपकी रूपरेखा</string>
-        <string name="yourName">तुम्हारा नाम:</string>
-        <string name="enterYourName">अपना नाम दर्ज करें</string>
-        <string name="yourEmail">तुम्हारा ईमेल:</string>
-        <string name="enterYourEmail">अपना ईमेल दर्ज करें</string>
-        <string name="yourPicture">आपकी तस्वीर:</string>
-        <string name="clickButtonAbove">फोटो लेने के लिए ऊपर दिए गए बटन पर क्लिक करें</string>
-    </resources>
 
+    <string name="title">मेरे जीयूआई को देखो</string>
+    <string name="button">यहाँ क्लिक करें</string>
+    <string name="checkbox">इसकी जांच करें!</string>
+    <string name="switchbox">चालू करना / बंद करना </string>
+    <string name="textbox">यहा लिखो </string>
+
+    <string name="toast">यहां अधिक जानकारी है</string>
+
+    <string name="snackbar_off">स्विच अब बंद है </string>
+    <string name="snackbar_on">स्विच अब चालू है </string>
+    <string name="snackbar_undo">पूर्ववत</string>
+
+    <!-- Login Activity -->
+        <string name="email">अपना ईमेल पता दर्ज करें:</string>
+        <string name="email_hint">ईमेल यहाँ टाइप करें</string>
+        <string name="password">अपना पासवर्ड टाइप करें:</string>
+        <string name="login_button">पहचानकर्ता</string>
+
+    <!-- Profile Activity -->
+
+        <string name="profile_title">आपकी रूपरेखा</string>
+        <string name="profile_name">तुम्हारा नाम:</string>
+        <string name="profile_name_hint">अपना नाम दर्ज करें</string>
+        <string name="profile_email">तुम्हारा ईमेल:</string>
+        <string name="profile_email_hint">अपना ईमेल दर्ज करें</string>
+        <string name="profile_picture">आपकी तस्वीर:</string>
+        <string name="profile_picture_hint">फोटो लेने के लिए ऊपर दिए गए बटन पर क्लिक करें</string>
+
+    <!-- Chat Activity -->
+    <string name="ButtonText">लॉग इन करें</string>
+    <string name="goToChat">चैट पर जाएं </string>
+    <string name="send">भेजना</string>
+    <string name="receive">प्राप्त करना </string>
+
+    </resources>
 
