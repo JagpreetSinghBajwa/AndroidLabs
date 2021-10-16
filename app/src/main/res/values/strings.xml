@@ -34,6 +34,7 @@
     <string name="goToChat">Go to chat</string>
     <string name="send">send</string>
     <string name="receive">receive</string>
+    <string name="TypeHere">Type Here</string>
 
 
 </resources>
