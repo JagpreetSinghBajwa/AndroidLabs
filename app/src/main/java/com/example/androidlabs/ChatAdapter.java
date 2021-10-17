@@ -31,14 +31,15 @@ class ChatAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return this.messageList.get(i).getMsg_id();
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+
         Message messageObj = getItem(position);
         View row = convertView;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (messageObj.left) {
+        if (messageObj.isSend) {
             row = inflater.inflate(R.layout.row_item_right, parent, false);
         }else{
             row = inflater.inflate(R.layout.row_item_left, parent, false);
@@ -55,6 +56,11 @@ class ChatAdapter extends BaseAdapter {
 
     public void remove(int index){
         messageList.remove(index);
+        notifyDataSetChanged();
+    }
+
+    public void adddatabase(ArrayList<Message> lst){
+        messageList.addAll(lst);
         notifyDataSetChanged();
     }
 }

@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="25dp"
     tools:context=".ProfileActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
-        android:text="@string/profile_title" />
+        android:text="@string/your_profile"
+        android:textSize="22sp" />
 
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/profile_name" />
+        android:layout_marginTop="16dp"
+        android:text="@string/name_label"
+        android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/name_edit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/profile_name_hint" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/profile_email" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/profile_email_hint" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/profile_picture" />
-
-    <ImageButton
-        android:id="@+id/profile_picture"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/picture_frame" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/profile_picture_hint" />
-    <Button
-        android:id="@+id/goToChat"
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/goToChat" />
+        android:hint="@string/name_hint"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/your_email"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/your_picture"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnTakePic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:onClick="dispatchTakePictureIntent"
+        android:src="@android:drawable/picture_frame"
+        android:text="@string/Login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/your_picture_msg"
+        android:textSize="18sp" />
+
+
+    <Button
+        android:id="@+id/buttonChat"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/go_chat"
+        android:layout_marginTop="6dp"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

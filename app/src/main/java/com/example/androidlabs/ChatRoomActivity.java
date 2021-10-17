@@ -1,7 +1,9 @@
 package com.example.androidlabs;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -10,8 +12,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -21,14 +28,16 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Button buttonReceive;
     private ChatAdapter mChatAdapter;
     private boolean side = true;
+    long x;
+    DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        dbManager = new DBManager(this);
+        dbManager.open();
 
-
-        // initialize controls
         buttonSend = (Button) findViewById(R.id.send);
         buttonReceive = (Button) findViewById(R.id.recieve);
         chatText = findViewById(R.id.msg);
@@ -36,16 +45,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         mChatAdapter = new ChatAdapter(getApplicationContext());
 
-        // set adapter for listview
         listView.setAdapter(mChatAdapter);
+        ArrayList<Message> mArrayList = dbManager.getlist();
+        mChatAdapter.adddatabase(mArrayList);
 
-        // click listener to send message
+        printCursor(dbManager.fetch() , dbManager.getVersion());
+
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check that user type something or not
                 if(chatText.getText().toString().trim().length()>0) {
-                    // send message and update list
                     side = true;
                     sendChatMessage();
                 }else{
@@ -69,7 +78,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
-        // long click listern to delete chat message
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
@@ -87,6 +95,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // delete messsage
+                                x = mChatAdapter.getItemId(index);
+                                dbManager.delete(x);
                                 mChatAdapter.remove(index);
                                 dialog.cancel();
                             }
@@ -107,11 +117,28 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-    // send and receive message method
     private boolean sendChatMessage() {
-        mChatAdapter.add(new Message(side, chatText.getText().toString()));
+        dbManager.insert(side, chatText.getText().toString().trim());
+        long id = dbManager.getLastAddedRowId();
+        mChatAdapter.add(new Message(id , side, chatText.getText().toString()));
         chatText.setText("");
         return true;
+    }
+
+    private void printCursor(Cursor c, int version){
+        Log.i("Cursor" , "Database Version = " + version);
+        int coulmnCount = c.getColumnCount();
+        Log.i("Cursor" ,"Column Count = " + coulmnCount);
+        String[] columnNames = c.getColumnNames();
+        String str = Arrays.toString(columnNames);
+        Log.i("Cursor" , "Column Names = " + str);
+        int rowCount = c.getCount();
+        Log.i("Cursor" , "Row Count = " + rowCount);
+        for(int i = 0 ; i < c.getCount(); i++){
+            ArrayList<Message> lst = dbManager.getlist();
+            Message msg = lst.get(i);
+            Log.i("Cursor" , "Row number " + i + " = " + msg.getMsg_id() + " " + msg.getMessage() + " " + msg.isSend);
+        }
     }
 
 }

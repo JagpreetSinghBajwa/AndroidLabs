@@ -1,54 +1,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#efefef"
 android:orientation="vertical"
     >
 
-<ListView
-    android:id="@+id/msgview"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:background="@null"
-    android:divider="@null"
-
-    android:transcriptMode="alwaysScroll"></ListView>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="5"
-    android:layout_margin="5dp"
-    >
-
-    <Button
-        android:id="@+id/send"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+    <ListView
+        android:id="@+id/msgview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/send"
-        android:textSize="12sp"/>
+        android:background="@null"
+        android:divider="@null"
 
-    <EditText
-        android:id="@+id/msg"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:hint="@string/TypeHere"
-        android:singleLine="true"
-        android:maxLines="1"
-        />
+        android:transcriptMode="alwaysScroll" />
 
-    <Button
-        android:id="@+id/recieve"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="@string/receive"
-        android:textSize="12sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_margin="5dp"
+        >
 
-</LinearLayout>
+        <Button
+            android:id="@+id/send"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/send"
+            android:textSize="12sp"/>
+
+        <EditText
+            android:id="@+id/msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:hint="@string/type"
+            android:singleLine="true"
+            android:maxLines="1"
+            />
+
+        <Button
+            android:id="@+id/recieve"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/receive"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
 </LinearLayout>

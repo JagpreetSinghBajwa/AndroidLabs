@@ -1,40 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AndroidLabs</string>
-
-    <string name="title">Look at my GUI</string>
-    <string name="button">Click Here</string>
-    <string name="checkbox">Check this out!</string>
-    <string name="switchbox">Switch on / off</string>
-    <string name="textbox">Type here</string>
-
-    <string name="toast">Here\'s more information</string>
-
-    <string name="snackbar_off">The switch is now off</string>
-    <string name="snackbar_on">The switch is now on</string>
-    <string name="snackbar_undo">Undo</string>
-
-    <!-- Login Activity -->
-    <string name="email">Enter your email address:</string>
+    <string name="app_name">Android Labs</string>
+    <string name="Login">Login </string>
+    <string name="email_label">Enter your email address:</string>
+    <string name="pwd_label">Type your password:</string>
     <string name="email_hint">Type email here</string>
-    <string name="password">Type your password:</string>
-    <string name="login_button">Login</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="name_label">Your Name</string>
+    <string name="your_email">Your Email:</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="name_hint">Enter your Name</string>
+    <string name="your_picture">Your Picture</string>
+    <string name="your_picture_msg">Click the button above to take picture</string>
+    <string name="go_chat">Go to chat</string>
 
-    <!-- Profile Activity -->
-    <string name="profile_title">Your profile</string>
-    <string name="profile_name">Your name:</string>
-    <string name="profile_name_hint">Enter your name</string>
-    <string name="profile_email">Your email:</string>
-    <string name="profile_email_hint">Enter your email</string>
-    <string name="profile_picture">Your picture:</string>
-    <string name="profile_picture_hint">Click the button above to take a picture.</string>
 
-    <!-- Chat Activity -->
-    <string name="ButtonText">LOGIN</string>
-    <string name="goToChat">Go to chat</string>
-    <string name="send">send</string>
-    <string name="receive">receive</string>
-    <string name="TypeHere">Type Here</string>
 
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+    <string name="type">Type here</string>
 
 </resources>

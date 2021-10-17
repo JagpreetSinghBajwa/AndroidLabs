@@ -1,71 +1,94 @@
 package com.example.androidlabs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
-import android.widget.Button;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String SHARED_PREFS = "lab3";
-    private static final String EMAIL_PREF_KEY = "email";
+import java.util.Locale;
 
-    private EditText emailText;
-    private Button login;
-    private SharedPreferences prefs;
-    private String savedEmail;
+
+public class MainActivity extends AppCompatActivity {
+    SharedPreferences prefs;
+    EditText email;
+    private Locale locale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Check the shared preferences for a saved email and display it in the email box, otherwise display an empty string.
-        SharedPreferences pref = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String savedEmail = pref.getString(EMAIL_PREF_KEY, "");
-        ((EditText) findViewById(R.id.email)).setText(savedEmail);
-
-        // When the login button is clicked, transition to the Profile activity.
-        ((Button) findViewById(R.id.login)).setOnClickListener(clk -> {
-            // Saving the email to the shared preferences while clicking the button wasn't required, but it's helpful.
-            saveEmailToPreferences();
-            startActivity(new Intent(this, ProfileActivity.class));
-        });
+        initData();
     }
 
-    private void saveEmailToPreferences() {
-        SharedPreferences pref = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String enteredEmail = ((EditText) findViewById(R.id.email)).getText().toString();
-        pref.edit().putString(EMAIL_PREF_KEY, enteredEmail).commit();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+    void initData() {
+        prefs = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+        email = findViewById(R.id.edtEmail);
+        String getPrevEmail = prefs.getString("Email", "");
+        if (!TextUtils.isEmpty(getPrevEmail)) {
+            email.setText(getPrevEmail);
+        }
+        Configuration config = getResources().getConfiguration();
+        String lang = prefs.getString("LANGUAGE_ID", "en");
+        String systemLocale = getSystemLocale(config).getLanguage();
+        if (!TextUtils.isEmpty(lang) && systemLocale.equalsIgnoreCase(lang)) {
+            locale = new Locale(lang);
+            Locale.setDefault(locale);
+            setSystemLocale(config, locale);
+            updateConfiguration(config);
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        prefs.edit().putString("Email", email.getText().toString()).apply();
+    }
 
-        // Ensure the contents of the email box are saved in the shared preferences
-        saveEmailToPreferences();
+    public void onSubmit(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("Email", email.getText().toString());
+        startActivity(intent);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (locale != null) {
+            setSystemLocale(newConfig, locale);
+            Locale.setDefault(locale);
+            updateConfiguration(newConfig);
+        }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
+    private void updateConfiguration(Configuration config) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            createConfigurationContext(config);
+        } else {
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    private Locale getSystemLocale(Configuration config) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return config.getLocales().get(0);
+        } else {
+            return config.locale;
+        }
+    }
+
+    private void setSystemLocale(Configuration config, Locale locale) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
     }
 }
