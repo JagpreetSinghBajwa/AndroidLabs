@@ -39,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageButton mImageButton;
     private Locale locale;
     Button mButtonChat;
+    Button weatherForcasting;
 
 
     @Override
@@ -54,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         mImageButton = findViewById(R.id.btnTakePic);
         email = findViewById(R.id.edtEmail);
         mButtonChat= findViewById(R.id.buttonChat);
+        weatherForcasting= findViewById(R.id.weatherForecasting);
 
 
         prefs = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
@@ -82,7 +84,16 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
-    }
+
+
+     weatherForcasting.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent mIntent =new Intent(ProfileActivity.this,WeatherForecast.class);
+            startActivity(mIntent);            }
+    });
+}
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)

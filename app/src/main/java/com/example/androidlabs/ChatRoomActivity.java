@@ -63,7 +63,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
-        // click listener to receive message
         buttonReceive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

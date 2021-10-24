@@ -59,7 +59,7 @@ public class DBManager {
             message.setMsg_id(cursor.getLong(cursor.getColumnIndex( DatabaseHelper._ID)));
             message.setSend(cursor.getInt(cursor.getColumnIndex( DatabaseHelper.isSend)) > 0);
             message.setMessage(cursor.getString(cursor.getColumnIndex( DatabaseHelper.msg)));
-            mArrayList.add(message); //add the item
+            mArrayList.add(message);
             cursor.moveToNext();
         }
         return  mArrayList;
