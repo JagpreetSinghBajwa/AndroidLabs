@@ -14,9 +14,12 @@
     <string name="go_chat">Go to chat</string>
 
 
-
     <string name="send">Send</string>
     <string name="receive">Receive</string>
     <string name="type">Type here</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="message_here">Message Here</string>
+    <string name="is_a_send_message">Is a Send Message</string>
+    <string name="hide">Hide</string>
 
 </resources>

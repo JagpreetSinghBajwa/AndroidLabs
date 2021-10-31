@@ -11,10 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import android.content.Intent;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,9 +29,14 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Button buttonSend;
     private Button buttonReceive;
     private ChatAdapter mChatAdapter;
+    private FrameLayout frameLayout;
+    private boolean fromTablet = true;
     private boolean side = true;
     long x;
     DBManager dbManager;
+    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    DetailsFragment fragment = new DetailsFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +51,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.msgview);
         listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         mChatAdapter = new ChatAdapter(getApplicationContext());
-
+        frameLayout = findViewById(R.id.message_frame_layout);
+        if(frameLayout == null){
+            fromTablet = false;
+        }
         listView.setAdapter(mChatAdapter);
         ArrayList<Message> mArrayList = dbManager.getlist();
         mChatAdapter.adddatabase(mArrayList);
@@ -66,9 +76,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         buttonReceive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check that user type something or not
+
                 if(chatText.getText().toString().trim().length()>0) {
-                    // receive message and update list
                     side = false;
                     sendChatMessage();
                 }else{
@@ -82,7 +91,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
                                            int index, long arg3) {
                 // TODO Auto-generated method stub
-                // show alert before deleting message
                 AlertDialog.Builder alert = new AlertDialog.Builder(ChatRoomActivity.this);
 
                 alert.setTitle("Do you want to delete this?");
@@ -97,6 +105,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                                 x = mChatAdapter.getItemId(index);
                                 dbManager.delete(x);
                                 mChatAdapter.remove(index);
+                                removeDetailFragment();
                                 dialog.cancel();
                             }
                         });
@@ -114,7 +123,53 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Message message = mChatAdapter.getItem(i);
+                Bundle bundle = new Bundle();
+                bundle.putLong("messageId",message.msg_id);
+                bundle.putString("message",message.message);
+                bundle.putBoolean("is_send",message.isSend);
+
+                if(fromTablet){
+                    loadDetailFragment(bundle);
+                }else{
+                    Intent goToDetail = new Intent(ChatRoomActivity.this,EmptyActivity.class);
+                    goToDetail.putExtra("message",bundle);
+                    startActivity(goToDetail);
+                }
+            }
+        });
+
     }
+
+    private void loadDetailFragment(Bundle bundle){
+        try{
+            transaction = getSupportFragmentManager().beginTransaction();
+            fragment = new DetailsFragment();
+            fragment.setArguments(bundle);
+            transaction.replace(R.id.message_frame_layout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }catch (Exception exception){
+
+        }
+
+    }
+
+    private void removeDetailFragment(){
+        try{
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.remove(fragment);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+            transaction.commit();
+            fragment = null;
+        }catch (Exception exception){
+
+        }
+    }
+
 
     private boolean sendChatMessage() {
         dbManager.insert(side, chatText.getText().toString().trim());
@@ -126,8 +181,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     private void printCursor(Cursor c, int version){
         Log.i("Cursor" , "Database Version = " + version);
-        int coulmnCount = c.getColumnCount();
-        Log.i("Cursor" ,"Column Count = " + coulmnCount);
+        int columnCount = c.getColumnCount();
+        Log.i("Cursor" ,"Column Count = " + columnCount);
         String[] columnNames = c.getColumnNames();
         String str = Arrays.toString(columnNames);
         Log.i("Cursor" , "Column Names = " + str);

@@ -19,6 +19,9 @@
     <string name="send">भेजना</string>
     <string name="receive">प्राप्त करना </string>
     <string name="type">यहा लिखो</string>
+    <string name="message_here">संदेश यहाँ</string>
+    <string name="is_a_send_message">एक संदेश भेजें</string>
+    <string name="hide">छिपाना</string>
 
     </resources>
 
