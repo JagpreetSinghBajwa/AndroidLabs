@@ -171,12 +171,11 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
 
-    private boolean sendChatMessage() {
+    private void sendChatMessage() {
         dbManager.insert(side, chatText.getText().toString().trim());
         long id = dbManager.getLastAddedRowId();
         mChatAdapter.add(new Message(id , side, chatText.getText().toString()));
         chatText.setText("");
-        return true;
     }
 
     private void printCursor(Cursor c, int version){

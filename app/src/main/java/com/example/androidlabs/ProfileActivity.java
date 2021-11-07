@@ -27,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 
-
 public class ProfileActivity extends AppCompatActivity {
 
 
@@ -39,14 +38,15 @@ public class ProfileActivity extends AppCompatActivity {
     ImageButton mImageButton;
     private Locale locale;
     Button mButtonChat;
-    Button weatherForcasting;
+    Button weatherForecasting;
 
+    private Button toolBarButton;
+    private static final int TEST_TOOLBAR_RESULT = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
 
         initData();
     }
@@ -55,8 +55,10 @@ public class ProfileActivity extends AppCompatActivity {
         mImageButton = findViewById(R.id.btnTakePic);
         email = findViewById(R.id.edtEmail);
         mButtonChat= findViewById(R.id.buttonChat);
-        weatherForcasting= findViewById(R.id.weatherForecasting);
+        weatherForecasting= findViewById(R.id.weatherForecasting);
 
+
+        toolBarButton = findViewById(R.id.toolbarButton);
 
         prefs = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
         Log.e(ACTIVITY_NAME, "In function:onCreate");
@@ -76,6 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
             updateConfiguration(config);
         }
 
+        // click listern for button to open another screen
         mButtonChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,15 +88,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        weatherForecasting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent =new Intent(ProfileActivity.this,WeatherForecast.class);
+                startActivity(mIntent);            }
+        });
 
-     weatherForcasting.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent mIntent =new Intent(ProfileActivity.this,WeatherForecast.class);
-            startActivity(mIntent);            }
-    });
-}
 
+        toolBarButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, TestToolbar.class);
+                startActivityForResult(intent, TEST_TOOLBAR_RESULT);
+            }
+        });
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -132,6 +142,15 @@ public class ProfileActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageButton.setImageBitmap(imageBitmap);
+        }
+
+        Log.i("INFO", "---> "+resultCode+" ---> "+requestCode);
+        if(resultCode == TEST_TOOLBAR_RESULT){
+
+            Intent loginIntent =new Intent(ProfileActivity.this, MainActivity.class);
+            startActivity(loginIntent);
+
+            finish();
         }
     }
 

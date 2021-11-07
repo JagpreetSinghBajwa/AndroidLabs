@@ -76,11 +76,17 @@
         android:text="@string/go_chat"
         android:layout_marginTop="6dp"
         />
+
     <Button
         android:id="@+id/weatherForecasting"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
         android:text="GO TO WEATHER" />
+    <Button
+        android:id="@+id/toolbarButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Go To Toolbar Page" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

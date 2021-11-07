@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item1"
+        android:title="facebook"
+        android:icon="@drawable/facebook"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/item2"
+        android:title="linkedin"
+        android:icon="@drawable/linkedin"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/item3"
+        android:title="More"
+        app:showAsAction="never">
+
+        <menu>
+            <item
+                android:id="@+id/sub_item1"
+                android:title="about us"
+                app:showAsAction="ifRoom"/>
+        </menu>
+    </item>
+
+</menu>
